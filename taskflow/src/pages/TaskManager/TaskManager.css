@@ -1,0 +1,219 @@
+/* ===============================
+   MAIN CONTAINER STYLING
+================================= */
+.task-manager-container {
+  color: #eee;
+  padding: 20px;
+  max-width: 900px;
+  margin: 80px auto 40px;
+  background: rgba(255 255 255 / 0.05);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgb(0 153 255 / 0.3);
+  backdrop-filter: blur(5px);
+  animation: fadeSlideIn 0.8s ease-in-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   HEADER
+================================= */
+.task-manager-container h1 {
+  text-align: center;
+  color: #00aaff;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* ===============================
+   ADD TASK SECTION
+================================= */
+.add-task-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Input field */
+.task-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #0099ff;
+  background: transparent;
+  color: #eee;
+  font-size: 1rem;
+  transition: box-shadow 0.3s ease, background-color 0.3s;
+}
+
+.task-input:focus {
+  outline: none;
+  box-shadow: 0 0 10px #0099ff;
+  background-color: rgba(0, 153, 255, 0.1);
+}
+
+/* ===============================
+   DROPDOWN (SELECT)
+================================= */
+.assignee-select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #0099ff;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #eee;
+  font-size: 1rem;
+  min-width: 150px;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Dropdown hover + focus */
+.assignee-select:hover,
+.assignee-select:focus {
+  background-color: rgba(0, 153, 255, 0.15);
+  box-shadow: 0 0 10px rgba(0, 153, 255, 0.5);
+  outline: none;
+}
+
+/* Style dropdown arrow */
+.assignee-select::-ms-expand {
+  display: none;
+}
+.assignee-select::after {
+  content: '▼';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00aaff;
+  pointer-events: none;
+}
+
+/* Dropdown option styles (for most browsers) */
+.assignee-select option {
+  background-color: #0a0a0a;
+  color: #eee;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+/* Option hover (works in Chrome/Edge) */
+.assignee-select option:hover {
+  background-color: #0099ff;
+  color: #fff;
+}
+
+/* ===============================
+   ADD BUTTON
+================================= */
+.add-task-button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: #0099ff;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.add-task-button:hover {
+  background-color: #007acc;
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   TASK LIST
+================================= */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px 15px;
+  background: rgba(0 153 255 / 0.2);
+  border-radius: 6px;
+  font-size: 1rem;
+  border-left: 3px solid #0099ff;
+  transition: transform 0.2s ease, background-color 0.3s;
+}
+
+.task-item:hover {
+  transform: scale(1.02);
+  background: rgba(0 153 255 / 0.3);
+}
+
+.no-task-text {
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================= */
+@media (max-width: 768px) {
+  .task-manager-container {
+    margin: 60px 15px;
+    padding: 15px;
+  }
+
+  .task-manager-container h1 {
+    font-size: 1.4rem;
+  }
+
+  .add-task-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .add-task-button {
+    width: 100%;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .assignee-select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-manager-container {
+    margin: 40px 10px;
+  }
+
+  .task-manager-container h1 {
+    font-size: 1.2rem;
+  }
+
+  .task-input,
+  .assignee-select {
+    width: 100%;
+  }
+}
