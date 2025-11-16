@@ -1,0 +1,200 @@
+/*===============================
+   LOGIN WRAPPER (CENTERS)
+================================*/
+.login-wrapper {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  z-index: 10;
+  padding: 20px;
+
+  animation: fadeInScreen 0.8s ease forwards;
+}
+
+@keyframes fadeInScreen {
+  from { opacity: 0; filter: blur(10px); }
+  to   { opacity: 1; filter: blur(0); }
+}
+
+/*===============================
+   GLASS CARD WITH ANIMATIONS
+================================*/
+.login-container {
+  width: clamp(280px, 90vw, 420px);
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.25);
+
+  position: relative;
+  overflow: hidden;
+
+  /* FLOATING CARD */
+  animation: floatCard 4s ease-in-out infinite;
+
+  /* NEON BORDER GLOW */
+  box-shadow: 0 0 22px rgba(0,153,255,0.35);
+}
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(-6px); }
+  50%      { transform: translateY(6px); }
+}
+
+/*===============================
+   GLASS REFLECTION SWEEP
+================================*/
+.login-container::before {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -80%;
+  width: 300%;
+  height: 300%;
+  
+  background: linear-gradient(
+    45deg,
+    transparent 20%,
+    rgba(255,255,255,0.15) 50%,
+    transparent 80%
+  );
+
+  transform: rotate(15deg);
+  animation: glassSweep 6s infinite;
+}
+
+@keyframes glassSweep {
+  0%   { transform: translateX(-100%) rotate(15deg); }
+  100% { transform: translateX(100%) rotate(15deg); }
+}
+
+/*===============================
+   LOGIN FORM
+================================*/
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2vw, 20px);
+}
+
+/*-------------------------------
+   INPUT FIELDS
+-------------------------------*/
+.login-form input,
+.login-form select {
+  width: 100% !important;
+  padding: clamp(12px, 2vw, 16px);
+  font-size: clamp(15px, 1.2vw, 17px);
+
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 10px;
+  color: #fff;
+
+  outline: none;
+  transition: 0.3s ease;
+  backdrop-filter: blur(10px);
+
+  /* GLOW PULSE */
+  animation: fieldGlow 4s ease-in-out infinite;
+}
+
+@keyframes fieldGlow {
+  0%,100% { box-shadow: 0 0 0px rgba(0,153,255,0.0); }
+  50%     { box-shadow: 0 0 10px rgba(0,153,255,0.35); }
+}
+
+.login-form input:focus,
+.login-form select:focus {
+  border-color: #33c9ff;
+  background: rgba(0,0,0,0.6);
+  transform: scale(1.02);
+}
+
+/*===============================
+   PREMIUM BUTTON
+================================*/
+.login-form button[type="submit"] {
+  padding: clamp(12px, 2vw, 16px);
+
+  background: linear-gradient(135deg, #0099ff, #00c6ff);
+  border: none;
+  border-radius: 10px;
+
+  color: #fff;
+  font-size: clamp(16px, 1.3vw, 18px);
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ripple effect */
+.login-form button[type="submit"]::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
+.login-form button[type="submit"]:active::after {
+  width: 220px;
+  height: 220px;
+  opacity: 0.2;
+}
+
+.login-form button[type="submit"]:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #00baff, #33dbff);
+  box-shadow: 0 0 18px rgba(0,153,255,0.55);
+}
+
+/*===============================
+   TOGGLE BUTTON
+================================*/
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #53c9ff;
+  cursor: pointer;
+  text-align: center;
+
+  font-size: clamp(13px, 1vw, 15px);
+  margin-top: 4px;
+
+  transition: 0.25s ease;
+}
+
+.toggle-btn:hover {
+  color: #aeeaff;
+  transform: scale(1.05);
+}
+
+/*===============================
+   PARALLAX TILT EFFECT
+================================*/
+.login-container {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  transition: transform 0.2s ease;
+}
+
+.login-container:hover {
+  transform: rotateX(8deg) rotateY(-8deg);
+}
